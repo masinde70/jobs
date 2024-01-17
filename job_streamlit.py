@@ -4,7 +4,7 @@ import streamlit as st
 from streamlit_lottie import st_lottie
 
 password_attempt = st.text_input("Please Enter The Password")
-if password_attempt != "example_password":
+if password_attempt != "password_job":
     st.write("Incorrect Password!")
     st.stop()
 
