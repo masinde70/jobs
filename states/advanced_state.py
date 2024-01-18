@@ -11,6 +11,8 @@ st.write(st.session_state)
 
 # Initialize widget value with session state
 st.subheader("Initialize widget value with session state")
+if "num_input" not in st.session_state:
+    st.session_state["num_input"] = 5
 
 # Callbacks
 st.subheader("use callbacks")
