@@ -29,9 +29,16 @@ def add_timedelta():
     else:
         pass
 
+def subtract_timedelta():
+    if st.session_state.radio_range == "7 days":
+        st.session_state.start_date = st.session_state.end_date - timedelta(days=7)
+    elif st.session_state.radio_range == "28 days":
+        st.session_state.start_date = st.session_state.end_date - timedelta(days=28)
+    else:
+        pass
 
 st.radio("select a range", ["7 days", "28 days", "custom"], horizontal=True, key="radio_range", on_change=add_timedelta)
 col1, col2, col3 = st.columns(3)
 
 col1.date_input("start date", key="start_date", on_change=add_timedelta)
-col2.date_input("end date", key="end_date")
+col2.date_input("end date", key="end_date", on_change=subtract_timedelta)
