@@ -38,10 +38,13 @@ def kelvin_conversion():
     kelvin = st.session_state["kelvin"]
     st.session_state["celsius"] = kelvin - 273.15
     st.session_state["farenheit"] = (kelvin - 273.15) * 9 / 5 + 32
-    
+
 # Write a callback that adds whatever number the user
 # inputs to the Celsius box. Use args.
-
+def add_to_celsius(num):
+    st.session_state["celsius"] += num
+    celsius_conversion()
+    
 # Write a callback to sets the temperatures depending on
 # which button the user clicks. Use kwargs.
 
