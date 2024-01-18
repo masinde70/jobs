@@ -21,4 +21,8 @@ st.subheader("use callbacks")
 
 st.markdown("### select your time range")
 
-st.radio("select a range", ["7 days", "28 days", "custom"], horizontal=True)
+st.radio("select a range", ["7 days", "28 days", "custom"], horizontal=True, key="radio_range")
+col1, col2, col3 = st.columns(3)
+
+col1.date_input("start date", key="start_date")
+col2.date_input("end date", key="end_date")
