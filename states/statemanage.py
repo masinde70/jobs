@@ -44,26 +44,31 @@ def kelvin_conversion():
 def add_to_celsius(num):
     st.session_state["celsius"] += num
     celsius_conversion()
-    
+
 # Write a callback to sets the temperatures depending on
 # which button the user clicks. Use kwargs.
+def set_temperatures(celsius, farenheit, kelvin):
+    st.session_state["celsius"] = celsius
+    st.session_state["farenheit"] = farenheit
+    st.session_state["kelvin"] = kelvin
+    
 
 col1, col2, col3 = st.columns(3)
 
 # Hook up the first 3 callbacks to the input widgets
-col1.number_input("Celsius", step=0.01, key="celsius")
-col2.number_input("Farenheit", step=0.01, key="farenheit")
-col3.number_input("Kelvin", step=0.01, key="kelvin")
+col1.number_input("Celsius", step=0.01, key="celsius", on_change=celsius_conversion)
+col2.number_input("Farenheit", step=0.01, key="farenheit", on_change=ferenheit_conversion)
+col3.number_input("Kelvin", step=0.01, key="kelvin", on_change=kelvin_conversion)
 
 # Hook up the 4th callback to the button. Use args.
 col1, _, _ = st.columns(3)
 num = col1.number_input("Add to Celsius", step=1)
-col1.button("Add", type="primary")
+col1.button("Add", type="primary", on_click=add_to_celsius, args=(num,))
 
 col1, col2, col3 = st.columns(3)
 
 # Hook up the last callback to each button. Use kwargs.
-col1.button('🧊 Freezing point of water')
+col1.button('🧊 Freezing point of water', on_click=set_temperatures, kwargs=dict(celsius=0.00, ferenheit=32.0, kelvin=273.15))
 col2.button('🔥 Boiling point of water')
 col3.button('🥶 Absolute zero')
 
