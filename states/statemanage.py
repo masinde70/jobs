@@ -6,6 +6,14 @@ st.subheader("Temperature conversion")
 
 # Initialize state with temperatures.
 # Use the freezing point of water
+if "celsius" not in st.session_state:
+    st.session_state.celsius = 0.0
+
+if "farenheit" not in st.session_state:
+    st.session_state.farenheit = 32.0
+    
+if "kelvin" not in st.session_state:
+    st.session_state.kelvin = 273.15
 
 # Write a callback to convert the temperature in Celsius
 # to Farenheit and Kelvin. Change the values in the state
