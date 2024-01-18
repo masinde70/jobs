@@ -11,20 +11,34 @@ if "celsius" not in st.session_state:
 
 if "farenheit" not in st.session_state:
     st.session_state.farenheit = 32.0
-    
+
 if "kelvin" not in st.session_state:
     st.session_state.kelvin = 273.15
 
 # Write a callback to convert the temperature in Celsius
 # to Farenheit and Kelvin. Change the values in the state
 # appropriately
+def celsius_conversion():
+    celsius = st.session_state["celsius"]
+    st.session_state["farenheit"] = (celsius * 9 / 5) + 32
+    st.session_state["kelvin"] = celsius + 273.15
+
 
 # Same thing, but converting from Farenheit to Celsius
 # and Kelvin
+def ferenheit_conversion():
+    farenheit = st.session_state["farenheit"]
+    st.session_state["celsius"] = (farenheit - 32) * 5 / 9
+    st.session_state["kelvin"] = (farenheit - 32) * 5 / 9 + 273.15
+
 
 # Same thing, but converting from Kelvin to Celsius
 # and Farenheint
-
+def kelvin_conversion():
+    kelvin = st.session_state["kelvin"]
+    st.session_state["celsius"] = kelvin - 273.15
+    st.session_state["farenheit"] = (kelvin - 273.15) * 9 / 5 + 32
+    
 # Write a callback that adds whatever number the user
 # inputs to the Celsius box. Use args.
 
