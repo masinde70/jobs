@@ -6,6 +6,9 @@ st.title("Advance state Management")
 # Store widget value in session state
 st.subheader("Store widget value in session state")
 
+st.slider("select a number", 0, 10, key="slider")
+st.write(st.session_state)
+
 # Initialize widget value with session state
 st.subheader("Initialize widget value with session state")
 
