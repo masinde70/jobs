@@ -68,8 +68,16 @@ col1.button("Add", type="primary", on_click=add_to_celsius, args=(num,))
 col1, col2, col3 = st.columns(3)
 
 # Hook up the last callback to each button. Use kwargs.
-col1.button('🧊 Freezing point of water', on_click=set_temperatures, kwargs=dict(celsius=0.00, ferenheit=32.0, kelvin=273.15))
-col2.button('🔥 Boiling point of water')
-col3.button('🥶 Absolute zero')
+col1.button('🧊 Freezing point of water', 
+            on_click=set_temperatures,
+            kwargs=dict(celsius=0.00, 
+                        ferenheit=32.0, kelvin=273.15))
+col2.button('🔥 Boiling point of water', 
+            on_click=set_temperatures,
+            kwargs=dict(celsius=100.00,
+                        farenheit=212.0, kelvin=373.15))
+col3.button('🥶 Absolute zero', on_click=set_temperatures,
+            kwargs=dict(celsius=-273.15,
+                        farenheit=-459.67, kelvin=0.0))
 
 st.write(st.session_state)
