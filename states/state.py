@@ -21,4 +21,7 @@ st.write(f"Reading with attribute syntax: {st.session_state.attribute}")
 # Update value in state
 st.session_state["key"] = "new value"
 st.session_state.attribute = "another new value"
+
+# Delete item in state
+del st.session_state["key"]
     
