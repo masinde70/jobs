@@ -71,7 +71,7 @@ col1, col2, col3 = st.columns(3)
 col1.button('🧊 Freezing point of water', 
             on_click=set_temperatures,
             kwargs=dict(celsius=0.00, 
-                        ferenheit=32.0, kelvin=273.15))
+                        farenheit=32.0, kelvin=273.15))
 col2.button('🔥 Boiling point of water', 
             on_click=set_temperatures,
             kwargs=dict(celsius=100.00,
