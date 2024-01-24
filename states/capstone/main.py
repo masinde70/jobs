@@ -3,10 +3,24 @@ import numpy as np
 from joblib import load
 
 # Initialize the session state with an empty prediction
+if "pred" not in st.session_state:
+    st.session_state.pred = None
 
 # Function to load the model (use caching)
+st.cache_resource(show_spinner="Loading model...")
+def load_model():
+    pipe = load('model/model.joblib')
+    return pipe
 
 # Callback function to make a prediction.
+def make_prediction(pipe):
+    miles = st.session_state["miles"]
+    years = st.session_state["year"]
+    make = st.session_state["make"]
+    model = st.session_state["model"]
+    engine_size = st.session_state["engine_size"]
+    province = st.session_state["province"]
+    
 # Use kwargs to pass the model as an argument
 # It updates the value of the prediction stored in the state
 
