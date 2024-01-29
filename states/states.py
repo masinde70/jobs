@@ -12,6 +12,16 @@ st.write(st.session_state)
 col1, buff, col2 = st.columns([1, .5, 3])
 option_names = ["a", "b", "c"]
 
+next = st.button("Next Option")
+if next:
+    if st.session_state["next"] == "a":
+        st.session_state["next"] = "b"
+    elif st.session_state["next"] == "b":    
+        st.session_state["next"] = "c"
+    else:
+        st.session_state["next"] = "a"
+
+
 option = col1.radio("Pick an option", option_names, key="radio_option")
 st.session_state
 
