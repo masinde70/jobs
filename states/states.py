@@ -20,4 +20,4 @@ if option == "a":
 elif option == "b":
     col2.write("You picked 'b' :heart:")
 else:
-    col2.write("You picked 'c' :sunglasses:")
+    col2.write("You picked 'c' :rocket:")
