@@ -1,5 +1,8 @@
 import streamlit as st
 import pandas as pd
+from st_aggrid import AgGrid
+
+
 
 # Set page config:
 # The title is "Homepage"
@@ -15,7 +18,6 @@ st.set_page_config(
 
 )
 
-
 # Initialize the state with the keys: [model, num_features, score]
 # This is where we store the info to display the ranking
 if all(key not in st.session_state.keys() for key in ('model', 'num_features', 'score')):
@@ -24,6 +26,15 @@ if all(key not in st.session_state.keys() for key in ('model', 'num_features', '
     st.session_state['score'] = []
 # Write a function to display a DataFrame ranked in descending order of F1-Score
 # The DataFrame has 3 columns: Model, Number of Features, F1-Score
+def display_df():
+    df = pd.DataFrame({
+        'Model': st.session_state['model'],
+        'Number of Features': st.session_state['num_features'],
+        'F1-Score': st.session_state['score']
+    })
+    df = df.sort_values(by='F1-Score', ascending=False).reset_index(drop=True)
+    AgGrid(df)
+
 
 if __name__ == "__main__":
     st.title("🏆 Model ranking")
@@ -32,6 +43,6 @@ if __name__ == "__main__":
         st.subheader("Train a model in the next page to see the results 👉")
     else:
         # Function that display the DataFrame runs here
-        pass
+        display_df()
     
     st.write(st.session_state)
