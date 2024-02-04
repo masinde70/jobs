@@ -1,33 +1,31 @@
 import streamlit as st 
 
+def lbs_to_kg():
+    # Define the conversion logic here
+    st.session_state.kg = st.session_state.lbs/2.2046
+
+def kg_to_lbs():
+    # Define the conversion logic here
+    st.session_state.lbs = st.session_state.kg*2.2046
+
 st.title("States")
 
 "st.session_state object:", st.session_state
 
-## Works with all widgets
-number = st.slider("A number", 1, 10, key="slider")
+col1, space, col2 = st.columns([2, .5, 2])
 
-st.write(st.session_state)
-
-col1, buff, col2 = st.columns([1, .5, 3])
-option_names = ["a", "b", "c"]
-
-next = st.button("Next Option")
-if next:
-    if st.session_state["next"] == "a":
-        st.session_state["next"] = "b"
-    elif st.session_state["next"] == "b":    
-        st.session_state["next"] = "c"
-    else:
-        st.session_state["next"] = "a"
+with col1:
+    pounds = st.number_input("Pounds", key="lbs", on_change= lbs_to_kg)
+with col2:
+    kilograms = st.number_input("Kilograms", key="kg", on_change= kg_to_lbs)
 
 
-option = col1.radio("Pick an option", option_names, key="radio_option")
-st.session_state
 
-if option == "a":
-    col2.write("You picked 'a' :smile:")
-elif option == "b":
-    col2.write("You picked 'b' :heart:")
-else:
-    col2.write("You picked 'c' :rocket:")
+def form_callback():
+    st.write(st.session_state.my_slider)
+    st.write(st.session_state.my_checkbox)
+
+with st.form(key='my_form'):
+    slider_input = st.slider('My slider', 0, 10, 5, key='my_slider')
+    checkbox_input = st.checkbox('Yes or No', key='my_checkbox')
+    submit_button = st.form_submit_button(label='Submit', on_click=form_callback)
